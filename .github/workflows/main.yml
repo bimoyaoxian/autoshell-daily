@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   daily-report:
     runs-on: ubuntu-latest
@@ -25,9 +28,8 @@ jobs:
         run: |
           pip install -r requirements.txt
       
-      - name: 运行主程序
+      - name: 运行基础测试
         env:
           WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
         run: |
-          cd src
-          python main.py
+          python src/simple_test.py
